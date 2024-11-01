@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <title>GeoPositions Plugin Map</title>
+    <script src="map.script.js" type="text/javascript"></script>
+    <script src="search.script.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    _mSiteName = 'GeoPositions Plugin Map';
+    _mUsePrintLink="";
+    function initMap() {
+      myMapApp = new _MapsApplication(document.getElementById("container_frb"),
+              document.getElementById("panel"),
+              document.getElementById("metapanel"),
+              document.getElementById("permalink"),
+              document.getElementById("toggle"),
+              document.getElementById("printheader"),
+              createMapSpecs());
+      myMapApp.loadMap();
+      _loadXmlFileFromURL("default.xml", myMapApp);
+      fnTurnMapOn();
+    }
+    
+    function _loadXmlFileFromURL(url, mapApp) {
+      var  _getter = _XMLHttp.create();
+      _getter.open("GET", url);
+      _getter.onreadystatechange=function() {
+        if (_getter.readyState==4) {
+          mapApp.loadXML(_getter.responseText);
+        }
+      }
+      _getter.send(null);
+    }
+    </script>
+    <style type="text/css">
+      body {
+        font-family:Verdana, Arial, Helvetica, sans-serif;
+        font-size:10px;
+      }
+  
+      #divMapA {
+        width:720px;
+        border: 1px solid #BBB;
+        padding: 2px;
+        background: #EEE;
+      }     
+
+      #mapOverlay {
+        position: absolute;
+        z-index: 1;
+        height: 1px;
+        background: url('target.gif');
+        display: none;
+      }
+    </style>
+  </head>
+  <body onload="initMap();">
+  	<div id="divMapA" style="display:block;">
+  		<div id="divMapHead" class="headerBar" style="display:block">
+  		  <table width="100%" cellpadding="0" cellspacing="0" style="font-size:12px" >
+  		    <tr>
+  		      <td align="right" style="font-size:12px;"><span id="toggle" style="font-size:12px"></span></td>
+  		    </tr>
+  		  </table>
+  		</div>
+      <div id="container_frb" style="width:720px;"></div>
+      <div style="position:absolute;top:30px;left:5px;">
+        <div id="panel"> </div>
+        <div id="metapanel"></div>
+        <div id="permalink"></div>
+        <div id="mapOverlay"></div>
+        <div id="printheader"></div>
+      </div>
+    </div>
+  </body>
+</html>

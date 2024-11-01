@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page>
+<title></title>
+<query>Why?</query>
+<request></request>
+<center lat="0" lng="0"/>
+<span lat="3.2" lng="3.2"/>
+<overlay panelStyle="sidepanel.xsl">
+
+
+</overlay>
+</page>
